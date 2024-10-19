@@ -39,6 +39,10 @@ const login = async (email, password) => {
   return token;
 };
 
+const getOne = (id) => {
+  return User.findById(id);
+}
+
 /*##################
 ####### LOGOUT ###
 ###################*/
@@ -46,4 +50,5 @@ const login = async (email, password) => {
 export default {
   register,
   login,
+  getOne
 };

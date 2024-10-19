@@ -5,10 +5,20 @@ const create = (courseData, isOwner) => {
 };
 
 const getAll = () => {
-  return Courses.find()
-}
+  return Courses.find();
+};
+
+const getOne = (id) => {
+  return Courses.findById(id);
+};
+
+const signUp = (courseId, userId) => {
+  return Courses.findByIdAndUpdate(courseId, { $push: { signUpList : userId} });
+};
 
 export default {
   create,
-  getAll
+  getAll,
+  getOne,
+  signUp,
 };
