@@ -1,105 +1,146 @@
-* {
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
-  color: #fff;
+  box-sizing: inherit;
 }
 
-#home {
-  width: 100%;
-  height: 100vh;
-  background-image: url(../images/background.jpg);
-  background-position: center;
-  background-size: cover;
-  padding-top: 120px;
+body {
+  font-family: "Mulish";
+  background-color: #FFBCB5;
 }
 
-nav {
-  background-color: #050912;
+.navigation > nav {
+  background-color: #262322;
   width: 100%;
-  padding: 2px 0;
   display: flex;
-  padding-left: 30px;
+  font-size: 1.5rem;
   align-items: center;
+  margin-top: 0;
+  margin: 0%;
+  height: 70px;
 }
 
-.logo {
-  width: 50px;
-  cursor: pointer;
+.navigation > nav img {
+  width: 4%;
+  padding-left: 1%;
 }
 
-nav ul {
-  flex: 1;
+.navigation > nav ul {
+  margin: 0 0 0 auto;
+  padding-right: 5%;
 }
 
-nav ul li {
+.navigation > nav li {
   display: inline-block;
-  margin: 10px 20px;
+  list-style-type: none;
+  padding-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-nav ul li a {
-  color: #fff;
+.navigation > nav li a {
   text-decoration: none;
+  color: white;
 }
 
-.content {
-  margin-left: 60px;
+.course-message {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(../images/wallpaper.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding-top: 7.2%;
+  padding-bottom: 10%;
 }
 
-.content h1 {
-  font-size: 88px;
-  margin-bottom: 15px;
+.course-message #site-title {
+  padding-left: 9%;
+  font-size: 46px;
+  color: #ffeae7;
+  font-weight: bold;
 }
 
-.content h1 span {
-  color: #096BAB;
+.course-message #site-mid-title {
+  padding-left: 9%;
+  font-size: 42px;
+  color: #ffeae7;
 }
 
-.content p {
-  line-height: 22px;
-  font-size: 26px;
+.last-course {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2%;
 }
 
-.content strong {
-    color: #2E87CB
+.last-course .info {
+  padding: 30px;
+  width: 20%;
+  background-color: #F2E5D7;
+  color: black;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-.content .buy {
+.last-course .title {
+  font-size: 18px;
+  text-align: center;
+  height: 40%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.last-blogs .author {
+  font-size: 16px;
+}
+
+.last-course .genre {
+  text-align: left;
+}
+
+.last-course .price {
+  font-weight: bold;
+}
+
+.last-course .certificate {
+  text-align: left;
+}
+
+.last-course .learn-more {
+  background-color: black;
+  border-radius: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-  margin-top: 30px;
-  background: #2E87CB;
-  color: #fff;
-  text-decoration: none;
-  padding: 15px 50px;
-  border-radius: 30px;
-  font-size: 20px;
+  margin-top: 10px;
 }
 
-footer p {
+.last-course a {
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #262322;
+  text-align: center;
+  font-weight: bold;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #050912;
-  color: white;
-  font-weight: bolder;
   text-align: center;
+  color: white;
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: #e7e7e7;
-    border: 1px solid #cacaca;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #050912;
+.not-available-course {
+  text-align: center;
+  margin: 100px;
 }
 
 .errorContainer {
@@ -108,17 +149,17 @@ footer p {
   min-width: 100px;
   display: block;
   z-index: 11111;
-  top: 80px;
+  top: 100px;
   text-align: center;
   border-radius: 20px;
   color: rgb(255, 255, 255);
   height: auto;
   width: 320px;
-  box-shadow: 0 5px 10px black;
+  box-shadow: 0 5px 10px #ffeae7;
 }
 
-.errorContainer > p {
-  background: #2E87CB;
+.errorContainer>p {
+  background: black;
   font-size: 20px;
   padding: 20px;
   height: auto;
@@ -137,20 +178,20 @@ footer p {
   animation-fill-mode: forwards;
 }
 
-@keyframes cssAnimation {
+/* @keyframes cssAnimation {
   to {
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    padding: 0;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      padding: 0;
   }
 }
 
 @-webkit-keyframes cssAnimation {
   to {
-    width: 0;
-    height: 0;
-    visibility: hidden;
-    padding: 0;
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      padding: 0;
   }
-}
+} */

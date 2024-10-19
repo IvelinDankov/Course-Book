@@ -9,34 +9,42 @@
   </head>
 
   <body>
-    <header class="header">
+
+    <!-- In case of error, you should display div with class "errorContainer" -->
+    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+
+    <!-- <div>
+            <div class="errorContainer">
+                <p>Error</p>
+            </div>
+        </div> -->
+
+    <div class="navigation">
       <nav>
-        <img src="/images/logo.jpg" class="logo" />
+        <img src="/images/logo.png" />
         <ul>
+          <!-- Guest users and Logged users -->
           <li><a href="/">Home</a></li>
-          <li><a href="#">All Games Code</a></li>
-          <li><a href="#">Search</a></li>
+          <li><a href="/courses/catalog">All Courses</a></li>
+          <!--For guest users-->
           {{#if isAuthenticated}}
-          {{!-- user --}}
-          <li><a href="#">Create Game Offer</a></li>
+          <li><a href="/auth/profile">Profile</a></li>
+          <li><a href="/courses/create">Create Course Offers</a></li>
           <li><a href="/auth/logout">Logout</a></li>
           {{else}}
-          {{!-- guest --}}
           <li><a href="/auth/login">Login</a></li>
           <li><a href="/auth/register">Register</a></li>
-          {{/if}}
+          <!--For loggin users-->
+            {{/if}}
         </ul>
       </nav>
-    </header>
+    </div>
 
-   
-        {{{body}}}
-    
+    <main>
+      {{{body}}}
+    </main>
 
-    <footer>
-      <p>Back-End 2023</p>
-    </footer>
-
+    <footer>Back-End 2023</footer>
   </body>
 
 </html>
