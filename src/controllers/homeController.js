@@ -1,9 +1,15 @@
 import { Router } from "express";
+import courseService from "../services/courseService.js";
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.render("home", { title: "" });
+router.get("/", async (req, res) => {
+    const courses = await courseService.getAll().lean();
+
+  if (courses.length > 3) {
+    courses.length = 3;
+  }
+  res.render("home", { title: "", courses });
 });
 
-export default router
+export default router;

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import courseService from "../services/courseService.js";
+import { getErrorMessage } from "../utils/getErrMsg.js";
 
 const router = Router();
 
@@ -20,7 +21,10 @@ router.post("/create", async (req, res) => {
 
     res.redirect("/");
   } catch (err) {
-    console.log(err.message);
+    const error = getErrorMessage(err);
+      res.render("courses/create", {
+          title: "Create Page", data: courseData, error
+      });
   }
 });
 
