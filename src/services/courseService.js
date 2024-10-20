@@ -13,7 +13,15 @@ const getOne = (id) => {
 };
 
 const signUp = (courseId, userId) => {
-  return Courses.findByIdAndUpdate(courseId, { $push: { signUpList : userId} });
+  return Courses.findByIdAndUpdate(courseId, { $push: { signUpList: userId } });
+};
+
+const remove = (courseId) => {
+  return Courses.findByIdAndDelete(courseId);
+};
+
+const edit = (id, data) => {
+  return Courses.findByIdAndUpdate(id, data);
 };
 
 export default {
@@ -21,4 +29,6 @@ export default {
   getAll,
   getOne,
   signUp,
+  remove,
+  edit,
 };

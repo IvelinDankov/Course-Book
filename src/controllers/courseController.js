@@ -56,6 +56,9 @@ router.get("/:courseId/details", async (req, res) => {
 
     const isOwner = req.user?._id == course.owner;
     const owner = await authService.getOne(course.owner).lean();
+    let signCourseUser = course.signUpList.map((userId) => userId);
+
+    signCourseUser = await authService.getOne(signCourseUser);
 
     const ownerEmail = owner.email;
 
@@ -63,9 +66,9 @@ router.get("/:courseId/details", async (req, res) => {
       title: "Details Page",
       course,
       isOwner,
-
       ownerEmail,
       signUp,
+      signCourseUser,
     });
   } catch (err) {
     const error = getErrorMessage(err);
@@ -84,6 +87,45 @@ router.get("/:courseId/signup", async (req, res) => {
   await courseService.signUp(courseId, userId);
 
   res.redirect(`/courses/${courseId}/details`);
+});
+
+/**********************
+ ******* EDIT *******
+ **********************/
+router.get("/:courseId/edit", async (req, res) => {
+  const courseId = req.params.courseId;
+
+  const course = await courseService.getOne(courseId).lean();
+
+  res.render("courses/edit", { title: "Edit Page", course });
+});
+
+router.post("/:courseId/edit", async (req, res) => {
+  const courseId = req.params.courseId;
+  const courseData = req.body;
+
+  try {
+    await courseService.edit(courseId, courseData).lean();
+    res.redirect(`/courses/${courseId}/details`);
+  } catch (err) {
+    const error = getErrorMessage(err);
+    res.render("courses/edit", { title: "Edit Page", course, error });
+  }
+});
+
+/**********************
+ ******* DELETE *******
+ **********************/
+router.get("/:courseId/delete", async (req, res) => {
+  const courseId = req.params.courseId;
+
+  try {
+    await courseService.remove(courseId);
+    res.redirect("/courses/catalog");
+  } catch (err) {
+    const error = getErrorMessage(err);
+    res.render(`courses/${courseId}delete`, error);
+  }
 });
 
 export default router;
