@@ -21,7 +21,7 @@ const remove = (courseId) => {
 };
 
 const edit = (id, data) => {
-  return Courses.findByIdAndUpdate(id, data);
+  return Courses.findByIdAndUpdate(id, data, { runValidators: true });
 };
 
 export default {

@@ -4,18 +4,22 @@ const courseModel = new Schema({
   title: {
     type: String,
     required: [true, "Title is required!"],
+    minLength: 5,
   },
   type: {
     type: String,
     required: [true, "Type is required!"],
+    minLength: 3
   },
   certificate: {
     type: String,
     required: [true, "Certificate is required!"],
+    minLength: 2
   },
   image: {
     type: String,
     required: [true, "Image is required!"],
+    validate: /^https?:\/\//
   },
   description: {
     type: String,
@@ -24,6 +28,7 @@ const courseModel = new Schema({
   price: {
     type: Number,
     required: [true, "Price is required!"],
+    min: 1
   },
   signUpList: [
     {

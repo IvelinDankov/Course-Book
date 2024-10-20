@@ -8,15 +8,18 @@ const userSchema = new Schema({
 
     username: {
         type: String,
-        required: true
+        required: [true, "Username is required!"],
+        minLength: 2
     },
     email: {
         type: String,
-        required: true
+        required: [true, "Email is required!"],
+        minLength: 10
     },
     password: {
         type: String,
-        required: true
+        required: [true, "Password is required!"],
+        minLength: 4
     },
 });
 
