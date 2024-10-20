@@ -43,6 +43,7 @@ const getOne = (id) => {
   return User.findById(id);
 }
 
+
 /*##################
 ####### LOGOUT ###
 ###################*/
@@ -50,5 +51,5 @@ const getOne = (id) => {
 export default {
   register,
   login,
-  getOne
+  getOne,
 };

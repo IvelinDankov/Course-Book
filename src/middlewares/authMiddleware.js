@@ -24,11 +24,16 @@ export const authMiddleware = (req, res, next) => {
   }
 };
 
-
 export function isAuth(req, res, next) {
   if (!req.user) {
-    return res.redirect('/auth/login');
+    return res.redirect("/auth/login");
   }
 
   return next();
+}
+export function loginUser(req, res, next) {
+  if (req.user) {
+    next();
+  }
+  return res.redirect("/404");
 }

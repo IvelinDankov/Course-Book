@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authService from "../services/authService.js";
-import { isAuth } from "../middlewares/authMiddleware.js";
+import { isAuth, loginUser } from "../middlewares/authMiddleware.js";
+import courseService from "../services/courseService.js";
 
 const router = Router();
 
@@ -8,12 +9,12 @@ const router = Router();
 ######## REGISTER ######
 ************************/
 // GET
-router.get("/register", (req, res) => {
+router.get("/register", loginUser, (req, res) => {
   res.render("auth/register");
 });
 
 // POST
-router.post("/register", async (req, res) => {
+router.post("/register", loginUser, async (req, res) => {
   const { username, email, password, rePass } = req.body;
 
   await authService.register(username, email, password, rePass);
@@ -27,12 +28,12 @@ router.post("/register", async (req, res) => {
 
 // GET
 
-router.get("/login", (req, res) => {
+router.get("/login", loginUser, (req, res) => {
   res.render("auth/login");
 });
 
 // POST
-router.post("/login", async (req, res) => {
+router.post("/login", loginUser, async (req, res) => {
   const { email, password } = req.body;
 
   const token = await authService.login(email, password);
@@ -50,6 +51,16 @@ router.get("/logout", isAuth, (req, res) => {
   res.clearCookie("auth");
 
   res.redirect("/");
+});
+
+/*##################
+####### PROFILE ###
+###################*/
+
+router.get("/profile", async (req, res) => {
+  const user = req.user;
+
+  res.render("auth/profile", { user });
 });
 
 export default router;

@@ -11,11 +11,13 @@
     <h3>Price: {{course.price}} </h3>
     <h3>By: {{ownerEmail}}</h3>
     <!--If there are sign up users-->
-        
-    <h4>Signed By: {{signCourseUser}}  </h4>
+        {{#if singUpUser}} 
+    <h4>Signed By: {{singUpUser}} </h4>
+        {{else}}
   
     <!--If there are no sign up users-->
     <h4>Nobody has signed in for this course yet</h4>
+        {{/if}}
           
   </div>
   <div class="details-container-content">

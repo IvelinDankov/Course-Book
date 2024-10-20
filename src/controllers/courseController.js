@@ -57,11 +57,19 @@ router.get("/:courseId/details", async (req, res) => {
 
     const isOwner = req.user?._id == course.owner;
     const owner = await authService.getOne(course.owner).lean();
-    let signCourseUser = course.signUpList.map((userId) => userId);
-
-    signCourseUser = await authService.getOne(signCourseUser);
 
     const ownerEmail = owner.email;
+
+
+    const signUpList = course.signUpList.map(userId => userId)
+
+    let singUpUser = ''
+    for (const id of signUpList) {
+      const users = await authService.getOne(id);
+
+      singUpUser += users.username + ", ";
+    }
+
 
     res.render("courses/details", {
       title: "Details Page",
@@ -69,7 +77,8 @@ router.get("/:courseId/details", async (req, res) => {
       isOwner,
       ownerEmail,
       signUp,
-      signCourseUser,
+
+      singUpUser,
     });
   } catch (err) {
     const error = getErrorMessage(err);
@@ -85,7 +94,7 @@ router.get("/:courseId/signup", isAuth, async (req, res) => {
   const courseId = req.params.courseId;
   const userId = req.user._id;
 
-  const isOwner = isCourseOwner(courseId, userId)
+  const isOwner = isCourseOwner(courseId, userId);
   if (isOwner) {
     return res.redirect("/404");
   }
